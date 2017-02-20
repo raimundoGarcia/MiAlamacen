@@ -11,7 +11,7 @@ public class Almacen {
        MenuPrincipal m= new MenuPrincipal();    
        m.inciarAplicacion();
       
-       
+       //esto es un comentario
         
     }
     
