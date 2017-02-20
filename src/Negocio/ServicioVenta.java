@@ -76,7 +76,31 @@ public class ServicioVenta {
         }
 
     }
+     public boolean removeVenta(int id){
+         boolean eliminado = false;
+         List<Venta> ventasEliminar = new ArrayList();
+            for (Venta v : ventas) {
+                if (v.getProducto().getId() == id) {
+                    ventasEliminar.add(v);
+                    eliminado=true;
+                }
+            }
+            ventas.removeAll(ventasEliminar);
+            return eliminado;
+     }
+     public boolean removeCliente(int numCliente){
+         boolean eliminado = false;
+              List<Venta> ventasEliminar = new ArrayList();
+            for (Venta v : ventas) {
+                if (v.getCliente().getIdCliente() == numCliente) {
+                    ventasEliminar.add(v);
+                    eliminado = true;
 
+                }
+            }
+            ventas.removeAll(ventasEliminar);
+            return eliminado;
+     }
    
 
    

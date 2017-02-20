@@ -61,15 +61,16 @@ public class ServicioProducto {
       public void elimninarProducto(int nproducto) {
         try {
             Producto productoEliminar = null;
+            sells.removeVenta(nproducto);
             //Eliminamos de ventas el producto seleccionado
-            List<Venta> ventasEliminar = new ArrayList();
-            for (Venta v : sells.getVentas()) {
-                if (v.getProducto().getId() == nproducto) {
-                    ventasEliminar.add(v);
-
-                }
-            }
-            sells.getVentas().removeAll(ventasEliminar);
+//            List<Venta> ventasEliminar = new ArrayList();
+//            for (Venta v : sells.getVentas()) {
+//                if (v.getProducto().getId() == nproducto) {
+//                    ventasEliminar.add(v);
+//
+//                }
+//            }
+//            sells.getVentas().removeAll(ventasEliminar);
 
             //Eliminamos el producto
             for (Producto p : productos) {

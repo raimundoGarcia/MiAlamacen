@@ -61,14 +61,15 @@ public class ServicioCliente {
             // Al eliminar un cliente también eliminamos las ventas asociadas a el
 
             //Eliminamos las ventas del cliente seleccionado
-            List<Venta> ventasEliminar = new ArrayList();
-            for (Venta v : sells.getVentas()) {
-                if (v.getCliente().getIdCliente() == numCliente) {
-                    ventasEliminar.add(v);
-
-                }
-            }
-            sells.getVentas().removeAll(ventasEliminar);
+            sells.eliminarVenta(numCliente);
+//            List<Venta> ventasEliminar = new ArrayList();
+//            for (Venta v : sells.getVentas()) {
+//                if (v.getCliente().getIdCliente() == numCliente) {
+//                    ventasEliminar.add(v);
+//
+//                }
+//            }
+//            sells.getVentas().removeAll(ventasEliminar);
 
             //Eliminamos el cliente
             Cliente clienteBorrar = null;
