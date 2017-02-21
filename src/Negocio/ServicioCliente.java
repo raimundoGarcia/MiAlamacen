@@ -10,7 +10,7 @@ import java.util.List;
 public class ServicioCliente {
 
     ServicioVenta sells;
-    private List<Cliente> clientes =new ArrayList();
+    private List<Cliente> clientes = new ArrayList();
 
     public ServicioVenta getSells() {
         return sells;
@@ -28,48 +28,41 @@ public class ServicioCliente {
         this.clientes = clientes;
     }
 
-   
-     public boolean introducirCliente(Cliente c) {
-        boolean añadido= false;
+    public boolean introducirCliente(Cliente c) {
+        boolean añadido = false;
         try {
-            if (buscarCliente(c.getIdCliente())== null){
-            clientes.add(c);
-            añadido = true;
+            if (buscarCliente(c.getIdCliente()) == null) {
+                clientes.add(c);
+                añadido = true;
             }
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
         return añadido;
     }
-      public Cliente buscarCliente(int numeroCliente) {
+
+    public Cliente buscarCliente(int numeroCliente) {
         Cliente cliente = null;
-        boolean encontrado= false;
+        boolean encontrado = false;
         int c;
         for (int i = 0; i < clientes.size() && !encontrado; i++) {
             c = clientes.get(i).getIdCliente();
-            if ( c == numeroCliente){
+            if (c == numeroCliente) {
                 cliente = clientes.get(i);
-                encontrado=true;
-            
-        }
-      
+                encontrado = true;
+
+            }
+
         }
         return cliente;
     }
-       public void eliminarCliente(int numCliente) {
+
+    public void eliminarCliente(int numCliente) {
         try {
             // Al eliminar un cliente también eliminamos las ventas asociadas a el
 
             //Eliminamos las ventas del cliente seleccionado
             sells.eliminarVenta(numCliente);
-//            List<Venta> ventasEliminar = new ArrayList();
-//            for (Venta v : sells.getVentas()) {
-//                if (v.getCliente().getIdCliente() == numCliente) {
-//                    ventasEliminar.add(v);
-//
-//                }
-//            }
-//            sells.getVentas().removeAll(ventasEliminar);
 
             //Eliminamos el cliente
             Cliente clienteBorrar = null;
@@ -86,29 +79,30 @@ public class ServicioCliente {
         }
 
     }
-        public String imprimirTodosClientes() {
+
+    public String imprimirTodosClientes() {
         String res = "";
         if (clientes.isEmpty()) {
             res = "No hay clientes introducidos.";
 
         } else {
-            for (Cliente c : clientes) {
+            res = String.format("%-15s %-15s %-15s %-15s %-15s %-15s","ID","Nombre","RAZON SOCIAL","CIF/DNI","TIPO","DESCUENTO") + "\n";
+           
+        for (Cliente c : clientes) {
 
                 if (c instanceof Mayorista) {
                     Mayorista m = (Mayorista) c;
-                    res += "\n ID NOMBRE  RAZON SOCIAL  CIF   TIPO  DESCUENTO" + "\n" + m.getIdCliente() + "   " + m.getNombre() + "   " + m.getRazonSocial() + "   " + m.getCif() + "   " + m.getTipoMayorista() + "   " + m.getDescuento();
+                    res += String.format("%-15s %-15s %-15s %-15s %-15s %-15s",m.getIdCliente(),m.getNombre(),m.getRazonSocial(),m.getCif(),m.getTipoMayorista(),m.getDescuento())+"\n";
 
                 }
                 if (c instanceof Particular) {
                     Particular p = (Particular) c;
-                    res += "\n ID NOMBRE  RAZON SOCIAL  DNI" + "\n" + p.getIdCliente() + "   " + p.getNombre() + "      " + p.getRazonSocial() + "   " + p.getDni();
+                    res += String.format("%-15s %-15s %-15s %-15s",p.getIdCliente(),p.getNombre(),p.getRazonSocial(),p.getDni())+ "\n";
 
                 }
             }
         }
         return res;
     }
-     
-
 
 }
